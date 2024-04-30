@@ -39,19 +39,27 @@ pipeline {
         }
     }
     post {
-        success {
-            emailext(
-                to: 'kundanmarri1@gmail.com',
-                subject: "SUCCESS: Stage Completed - ${currentBuild.fullDisplayName}",
-                body: "The stage completed successfully.",
+        always {
+            // Send email notifications with logs attached
+            emailext (
+                to: 'email@example.com',
+                subject: "Jenkins Pipeline Status: ${currentBuild.fullDisplayName}",
+                body: """<h1>Pipeline Completion Report</h1>
+                         <p><strong>Build:</strong> ${currentBuild.fullDisplayName}</p>
+                         <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
+                         <p><strong>Build URL:</strong> <a href="${buildUrl}">${buildUrl}</a></p>""",
                 attachLog: true
             )
         }
         failure {
-            emailext(
-                to: 'kundanmarri1@gmail.com',
-                subject: "FAILURE: Stage Failed - ${currentBuild.fullDisplayName}",
-                body: "The stage failed. Check the attached logs for more details.",
+            // Additional email notification for failure cases
+            emailext (
+                to: 'email@example.com',
+                subject: "FAILURE in Pipeline: ${currentBuild.fullDisplayName}",
+                body: """<h1>Pipeline Failure Report</h1>
+                         <p><strong>Build:</strong> ${currentBuild.fullDisplayName}</p>
+                         <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
+                         <p><strong>Build URL:</strong> <a href="${buildUrl}">${buildUrl}</a></p>""",
                 attachLog: true
             )
         }

@@ -42,7 +42,7 @@ pipeline {
         always {
             // Send email notifications with logs attached
             emailext (
-                to: 'email@example.com',
+                to: 'kundanmarri1@gmail.com',
                 subject: "Jenkins Pipeline Status: ${currentBuild.fullDisplayName}",
                 body: """<h1>Pipeline Completion Report</h1>
                          <p><strong>Build:</strong> ${currentBuild.fullDisplayName}</p>
@@ -54,7 +54,7 @@ pipeline {
         failure {
             // Additional email notification for failure cases
             emailext (
-                to: 'email@example.com',
+                to: 'kundanmarri1@gmail.com',
                 subject: "FAILURE in Pipeline: ${currentBuild.fullDisplayName}",
                 body: """<h1>Pipeline Failure Report</h1>
                          <p><strong>Build:</strong> ${currentBuild.fullDisplayName}</p>

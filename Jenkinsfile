@@ -39,17 +39,20 @@ pipeline {
         }
     }
     post {
-        success {
-            mail to: 'kundanmarri@gmail.com',
-                 subject: "SUCCESS: Stage Completed - ${currentBuild.fullDisplayName}",
-                 body: "The stage completed successfully."
-                 attachLog: true
-        }
-        failure {
-            mail to: 'kundanmarri@gmail.com',
-                 subject: "FAILURE: Stage Failed - ${currentBuild.fullDisplayName}",
-                 body: "The stage failed. Check the attached logs for more details.",
-                 attachLog: true
-        }
+    success {
+        emailext(
+            to: 'kundanmarri@gmail.com',
+            subject: "SUCCESS: Stage Completed - ${currentBuild.fullDisplayName}",
+            body: "The stage completed successfully.",
+            attachLog: true
+        )
+    }
+    failure {
+        emailext(
+            to: 'kundanmarri@gmail.com',
+            subject: "FAILURE: Stage Failed - ${currentBuild.fullDisplayName}",
+            body: "The stage failed. Check the attached logs for more details.",
+            attachLog: true
+        )
     }
 }

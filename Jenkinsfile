@@ -38,28 +38,27 @@ pipeline {
             }
         }
     }
+
     post {
         always {
-            // Send email notifications with logs attached
-            emailext (
+            emailext(
                 to: 'kundanmarri1@gmail.com',
-                subject: "Jenkins Pipeline Status: ${currentBuild.fullDisplayName}",
+                subject: "Jenkins Pipeline Status: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<h1>Pipeline Completion Report</h1>
-                         <p><strong>Build:</strong> ${currentBuild.fullDisplayName}</p>
+                         <p><strong>Build:</strong> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
                          <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
-                         <p><strong>Build URL:</strong> <a href="${buildUrl}">${buildUrl}</a></p>""",
+                         <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
                 attachLog: true
             )
         }
         failure {
-            // Additional email notification for failure cases
-            emailext (
+            emailext(
                 to: 'kundanmarri1@gmail.com',
-                subject: "FAILURE in Pipeline: ${currentBuild.fullDisplayName}",
+                subject: "FAILURE in Pipeline: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<h1>Pipeline Failure Report</h1>
-                         <p><strong>Build:</strong> ${currentBuild.fullDisplayName}</p>
+                         <p><strong>Build:</strong> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
                          <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
-                         <p><strong>Build URL:</strong> <a href="${buildUrl}">${buildUrl}</a></p>""",
+                         <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
                 attachLog: true
             )
         }

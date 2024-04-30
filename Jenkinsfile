@@ -44,10 +44,10 @@ pipeline {
             emailext(
                 to: 'kundanmarri1@gmail.com',
                 subject: "Jenkins Pipeline Status: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<h1>Pipeline Completion Report</h1>
-                         <p><strong>Build:</strong> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
-                         <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
-                         <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
+                body: Pipeline Completion Report
+                      Build:</strong> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
+                      Status:</strong> ${currentBuild.currentResult}</p>
+                      URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
                 attachLog: true
             )
         }
@@ -55,10 +55,10 @@ pipeline {
             emailext(
                 to: 'kundanmarri1@gmail.com',
                 subject: "FAILURE in Pipeline: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<h1>Pipeline Failure Report</h1>
-                         <p><strong>Build:</strong> ${env.JOB_NAME} #${env.BUILD_NUMBER}</p>
-                         <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
-                         <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
+                body: Pipeline Failure Report<
+                         Build:</strong> ${env.JOB_NAME} #${env.BUILD_NUMBER}</
+                         Status:</strong> ${currentBuild.currentResult}</p>
+                        URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
                 attachLog: true
             )
         }

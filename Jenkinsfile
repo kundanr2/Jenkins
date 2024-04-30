@@ -41,7 +41,7 @@ pipeline {
     post {
         success {
             emailext(
-                to: 'kundanmarri@gmail.com',
+                to: 'kundanmarri1@gmail.com',
                 subject: "SUCCESS: Stage Completed - ${currentBuild.fullDisplayName}",
                 body: "The stage completed successfully.",
                 attachLog: true
@@ -49,7 +49,7 @@ pipeline {
         }
         failure {
             emailext(
-                to: 'kundanmarri@gmail.com',
+                to: 'kundanmarri1@gmail.com',
                 subject: "FAILURE: Stage Failed - ${currentBuild.fullDisplayName}",
                 body: "The stage failed. Check the attached logs for more details.",
                 attachLog: true
